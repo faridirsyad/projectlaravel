@@ -17,6 +17,9 @@ class Post extends Model
     // protected $guarded = [];
     // protected $table = 'blog_posts'; jika nama table berbeda dengan nama class
 
+    //eager loading laravel (untuk mengatasi N+1)
+    protected $with = ['author', 'category'];
+
 
     public function author(): BelongsTo
     {
