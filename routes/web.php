@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,7 +13,7 @@ Route::get('/', function () {
 // $posts = Post::with(['category', 'author'])->latest()->get();
 
 Route::get('/posts', function () {
-    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->get();
+    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQueryString();
 
     return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
